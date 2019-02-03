@@ -1,6 +1,8 @@
 // Walter Johnson
 // Week 4 HW Assignment: Higher-Order Functions and Objects
 
+"use strict";
+
 const X = Number.MIN_SAFE_INTEGER;
 
 function Automobile(year, make, model, type) {
@@ -18,9 +20,11 @@ function Automobile(year, make, model, type) {
 }
 
 // allows logMe method to be used with forEach
-var logFunc = function (item) {
-    item.logMe(true);
-}
+var logFunc = function (array, typeFlag) {
+    array.forEach(function (item) {
+        item.logMe(typeFlag);
+    });
+};
 
 var automobiles = [
     new Automobile(1995, "Honda", "Accord", "Sedan"),
@@ -89,14 +93,14 @@ console.log("");
 console.log("*****");
 console.log("The cars sorted by year are:");
 sortArr(yearComparator, automobiles);
-automobiles.forEach(logFunc);
+logFunc(automobiles, false);
 console.log("");
 console.log("The cars sorted by make are:");
 sortArr(makeComparator, automobiles);
-automobiles.forEach(logFunc);
+logFunc(automobiles, false);
 console.log("");
 console.log("The cars sorted by type are:");
 sortArr(typeComparator, automobiles);
-automobiles.forEach(logFunc);
+logFunc(automobiles, true);
 console.log("*****");
 console.log("");

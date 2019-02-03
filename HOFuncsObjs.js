@@ -24,8 +24,10 @@ function Automobile(year, make, model, type) {
 }
 
 // allows logMe method to be used with forEach
-var logFunc = function (item) {
-    item.logMe(true);
+var logFunc = function (array, typeFlag) {
+    array.forEach(function(item) {
+        item.logMe(typeFlag);
+    });
 }
 
 var automobiles = [
@@ -71,13 +73,12 @@ function yearComparator(auto1, auto2) {
      return exComparator(auto1.year, auto2.year || X);
 }
 
-var logFunc = function (item) {
-    item.logMe(true);
-}
+// var logFunc = function (item) {
+//     item.logMe(this);
+// }
 
 console.log("");
-automobiles.forEach(logFunc);
-
+logFunc(automobiles, false);
 // This compares two automobiles based on their make.
 // It should be case insensitive and makes which are alphabetically earlier in the alphabet are "greater" than ones that come later.
 function makeComparator(auto1, auto2) {
@@ -87,7 +88,7 @@ function makeComparator(auto1, auto2) {
 sortArr(makeComparator, automobiles);
 
 console.log("");
-automobiles.forEach(logFunc);
+automobiles.forEach(logFunc, false);
 
 // This compares two automobiles based on their type.
 // The ordering from "greatest" to "least" is as follows: roadster, pickup, suv, wagon, (types not otherwise listed).
